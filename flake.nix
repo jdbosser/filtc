@@ -24,6 +24,7 @@
                         p.setuptools
                         p.scipy 
                         p.tqdm
+                        p.mypy
                     ]))
                     pkgs.pyright
                   ];
