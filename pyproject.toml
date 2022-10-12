@@ -3,7 +3,7 @@ requires = ["setuptools", "setuptools-scm"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "berpfpy"
+name = "filtering.py"
 description = "My package description"
 readme = "README.md"
 version = "0.0.1"
@@ -14,7 +14,7 @@ dependencies = [
 ]
 
 [project.scripts]
-my-script = "berpfpy.module:function"
+my-script = "filteringpy.module:function"
 
 
 [tool.pytest.ini_options]

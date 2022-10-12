@@ -1,4 +1,4 @@
-from berpfpy.module import add
+from filteringpy.module import add
 
 
 def inc(x):
