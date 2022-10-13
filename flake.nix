@@ -15,21 +15,21 @@
         let pkgs = nixpkgs.legacyPackages.${system}; 
         
         in
-        {
+        rec {
             devShells.default =  pkgs.mkShell {
                   buildInputs = [
-                    (pkgs.python3.withPackages (p: [
-                        p.numpy 
-                        p.matplotlib 
-                        p.setuptools
-                        p.scipy 
-                        p.tqdm
-                        p.mypy
-                        p.pytest
-                    ]))
-                    pkgs.pyright
+                    defaultPackage
+                    # (pkgs.python3.withPackages (p: [
+                    #     # p.numpy
+                    #     # p.mypy
+                    #     # p.pytest
+                    #     defaultPackage
+                    # ]))
+                    # pkgs.pyright
                   ];
             };
+
+            defaultPackage = pkgs.python39Packages.callPackage ./pack.nix {}; 
 
         }
     );

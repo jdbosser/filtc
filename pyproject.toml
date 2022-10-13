@@ -7,11 +7,7 @@ name = "filtc"
 description = "My package description"
 readme = "README.md"
 version = "0.0.1"
-dependencies = [
-    "numpy",
-    "scipy",
-    "matplotlib",
-]
+dependencies = ["numpy"]
 
 
 [tool.pytest.ini_options]

@@ -7,7 +7,7 @@
 }:
 
 buildPythonPackage rec {
-    pname = "example_name";
+    pname = "filtc";
     version = "0.0.1";
     src = ./.;
     format = "pyproject";
