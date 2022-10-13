@@ -2,11 +2,11 @@
 from typing import TypeVar, Callable, Generic, Iterator, Optional, Protocol, Iterable
 import numpy as np
 
-M               = TypeVar("M") 
+M               = TypeVar("M", contravariant=True) 
 Measurements    = Optional[M]
 S               = TypeVar("S") 
 
-class Filter(Protocol):
+class Filter(Protocol[M]):
 
     def __call__(self, measurements: Optional[M]) -> "Filter":
         ...
@@ -25,7 +25,7 @@ def filtc(f           : Filter,
 
 
 def filtc_conditional(f             : Filter, 
-                      f_modifier    : FilterModifier, 
+                      f_modifier    : FilterModifier[S], 
                       datasource    : Iterator[tuple[S, Measurements]]
                       ) -> Iterator[Filter]:
 

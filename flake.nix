@@ -25,6 +25,7 @@
                         p.scipy 
                         p.tqdm
                         p.mypy
+                        p.pytest
                     ]))
                     pkgs.pyright
                   ];
