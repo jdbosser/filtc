@@ -18,18 +18,20 @@
         rec {
             devShells.default =  pkgs.mkShell {
                   buildInputs = [
-                    defaultPackage
-                    # (pkgs.python3.withPackages (p: [
-                    #     # p.numpy
-                    #     # p.mypy
-                    #     # p.pytest
-                    #     defaultPackage
-                    # ]))
-                    # pkgs.pyright
+                    # defaultPackage
+                    (pkgs.python310.withPackages (p: [
+                        # p.numpy
+                        p.mypy
+                        p.pytest
+                        packages.default
+                    ]))
+                    pkgs.pyright
                   ];
             };
 
-            defaultPackage = pkgs.python39Packages.callPackage ./pack.nix {}; 
+            packages.default = pkgs.python310Packages.callPackage ./pack.nix {}; 
+
+            buildPythonPackage = (python: python.pkgs.callPackage ./pack.nix {}); 
 
         }
     );
