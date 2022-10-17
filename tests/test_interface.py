@@ -19,7 +19,7 @@ class F:
 
 
 _F = Callable[[Optional[float]], "_F"]
-def f(measurements: Optional[float]) -> Callable[[Optional[float]], _F]:
+def f(measurements: float | None) -> Callable[[Optional[float]], _F]:
     ...
 
 
