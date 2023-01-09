@@ -1,2 +1,2 @@
-from .filtc import Filter, filtc, FilterModifier, filtc_conditional
+from .filtc import FilterP, FilterT, filtc, FilterModifier, filtc_conditional
 

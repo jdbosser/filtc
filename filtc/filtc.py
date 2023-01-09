@@ -1,21 +1,22 @@
 
-from typing import TypeVar, Callable, Generic, Iterator, Optional, Protocol, Iterable
-import numpy as np
+from typing import TypeVar, Callable, Iterator, Optional, Protocol, Iterable
+from typing_extensions import Self
 
 M               = TypeVar("M", contravariant=True) 
 Measurements    = Optional[M]
 S               = TypeVar("S") 
 
-class Filter(Protocol[M]):
+class FilterP(Protocol[M]):
 
-    def __call__(self, measurements: Optional[M]) -> "Filter":
+    def __call__(self, measurements: Optional[M]) -> Self:
         ...
 
-FilterModifier  = Callable[[Filter, S], Filter]
 
+FilterT = TypeVar("FilterT", bound = FilterP)
+FilterModifier  = Callable[[FilterT, S], FilterT]
 
-def filtc(f           : Filter, 
-          datasource  : Iterator[Measurements]) -> Iterable[Filter]:
+def filtc(f           : FilterT, 
+          datasource  : Iterator[Measurements]) -> Iterable[FilterT]:
 
     p = f
     for a in datasource:
@@ -24,10 +25,10 @@ def filtc(f           : Filter,
         p = p2
 
 
-def filtc_conditional(f             : Filter, 
-                      f_modifier    : FilterModifier[S], 
+def filtc_conditional(f             : FilterT, 
+                      f_modifier    : Callable[[FilterT, S], FilterT], 
                       datasource    : Iterator[tuple[S, Measurements]]
-                      ) -> Iterator[Filter]:
+                      ) -> Iterator[FilterT]:
 
     """ Filter function that allows modification of the filter before it is
     used, created to be able to insert known data, from the ground truth, into

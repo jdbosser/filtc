@@ -1,9 +1,9 @@
-from filtc.filtc import Filter 
+from filtc.filtc import FilterP 
 from dataclasses import dataclass
 from typing import Protocol, runtime_checkable, Optional, Callable
 
 @runtime_checkable
-class MFilter(Filter, Protocol):
+class MFilter(FilterP, Protocol):
     ...
 
 @dataclass
