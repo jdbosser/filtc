@@ -1,4 +1,4 @@
-{lib, buildPythonPackage, pytestCheckHook, numpy, pip, typing-extensions, pythonOlder }:
+{lib, buildPythonPackage, pytestCheckHook, numpy, pip, setuptools, typing-extensions, pythonOlder }:
 
 buildPythonPackage rec {
     pname = "filtc";
@@ -7,7 +7,7 @@ buildPythonPackage rec {
     src = ./.;
     format = "pyproject";
     checkInputs = [ pytestCheckHook ];
-    buildInputs = [pip]; 
+    buildInputs = [pip setuptools]; 
     propagatedBuildInputs  = [ numpy typing-extensions ];
     meta = with lib; {
     };
